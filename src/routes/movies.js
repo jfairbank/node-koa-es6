@@ -5,7 +5,7 @@ const movies = router({
 });
 
 movies.get('/', function* () {
-	this.body = 'Hey'
+	this.body = { success: true }
 });
 
 export default movies;

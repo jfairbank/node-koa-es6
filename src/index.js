@@ -1,12 +1,11 @@
 import koa from 'koa';
-import Router from 'koa-router';
-
-import routes from './routes';
 import config from 'config';
+import routes from './routes';
 
 const app = koa();
-const port = config.get('port');
 
 routes(app);
+
+const port = config.get('port');
 
 app.listen(port, () => console.log(`API running on ${port}`));
