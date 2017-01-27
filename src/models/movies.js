@@ -1,10 +1,22 @@
 import db from '../db';
-import { STRING, DATE } from 'sequelize';
+
+import {
+	STRING,
+	DATE,
+	TEXT,
+	UUID,
+} from 'sequelize';
 
 const Movie = db.define('movie', {
+	id: {
+		type: UUID,
+	},
 	title: {
 		type: STRING,
 	},
+	description: {
+		type: TEXT,
+	}
 	createdAt: {
 		type: DATE,
 		field: 'created_at',
