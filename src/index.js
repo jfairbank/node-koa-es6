@@ -1,3 +1,5 @@
+import 'babel-polyfill';
+
 import koa from 'koa';
 import bodyParser from 'koa-bodyparser';
 import config from 'config';
