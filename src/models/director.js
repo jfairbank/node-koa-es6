@@ -1,4 +1,5 @@
 import db from '../db';
+import Movie from './movie';
 
 import {
 	STRING,

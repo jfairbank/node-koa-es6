@@ -25,6 +25,27 @@ movies.get('/', function* () {
 	this.body = movies;
 });
 
+movies.get('/:id', function* () {
+	const movie = yield Movie.findOne({
+		where: {
+			id: this.params.id,
+		},
+		attributes: [
+			'title',
+			'description',
+			'image',
+			'released',
+		],
+		include: {
+			model: Director,
+			as: 'director',
+			attributes: ['name'],
+		},
+	});
+
+	this.body = movie;
+});
+
 movies.post('/', function* () {
 	const {
 		title,

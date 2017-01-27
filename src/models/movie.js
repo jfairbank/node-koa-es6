@@ -41,5 +41,6 @@ const Movie = db.define('movie', {
 }, { tableName: 'movie' });
 
 Movie.belongsTo(Director, { foreignKey: 'directorId' });
+Director.hasMany(Movie, { as: 'movies', foreignKey: 'directorId' });
 
 export default Movie;

@@ -6,7 +6,9 @@ drop table if exists director;
 create table director
 (
     id uuid default uuid_generate_v4() primary key,
-    name text not null
+    name text not null,
+    created_at timestamptz not null default now(),
+    updated_at timestamptz not null default now()
 );
 
 create table movie
