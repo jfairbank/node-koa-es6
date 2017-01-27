@@ -1,14 +1,48 @@
 import router from 'koa-router';
-import Movie from '../models/movies';
+import Movie from '../models/movie';
+import Director from '../models/director';
 
 const movies = router({
 	prefix: '/movies',
 });
 
 movies.get('/', function* () {
-	const movies = yield Movie.findAll();
+	const movies = yield Movie.findAll({
+		attributes: [
+			'id',
+			'title',
+			'description',
+			'image',
+			'released',
+		],
+		include: {
+			model: Director,
+			as: 'director',
+			attributes: ['name'],
+		},
+	});
 
 	this.body = movies;
+});
+
+movies.post('/', function* () {
+	const {
+		title,
+		description,
+		image,
+		released,
+		directorId,
+	} = this.request.body;
+
+	const movie = yield Movie.create({
+		title,
+		description,
+		image,
+		released,
+		directorId,
+	});
+
+	this.body = movie;
 });
 
 export default movies;

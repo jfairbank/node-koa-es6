@@ -1,4 +1,5 @@
 import db from '../db';
+import Director from './director';
 
 import {
 	STRING,
@@ -10,13 +11,25 @@ import {
 const Movie = db.define('movie', {
 	id: {
 		type: UUID,
+		primaryKey: true,
+		autoIncrement: true,
 	},
 	title: {
 		type: STRING,
 	},
+	image: {
+		type: STRING,
+	},
 	description: {
 		type: TEXT,
-	}
+	},
+	directorId: {
+		type: UUID,
+		field: 'director_id',
+	},
+	released: {
+		type: DATE,
+	},
 	createdAt: {
 		type: DATE,
 		field: 'created_at',
@@ -25,6 +38,8 @@ const Movie = db.define('movie', {
 		type: DATE,
 		field: 'updated_at',
 	},
-});
+}, { tableName: 'movie' });
+
+Movie.belongsTo(Director, { foreignKey: 'directorId' });
 
 export default Movie;
