@@ -11,4 +11,5 @@ routes(app);
 
 const port = config.get('port');
 
+/* eslint-disable no-console */
 app.listen(port, () => console.log(`API running on ${port}`));
